@@ -7,14 +7,15 @@
 //
 
 #import "ViewController.h"
+#import "PPRSA.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-
-#define VERSION_NUMBER @(100)
 
 
 @interface ViewController ()
 
 @property (copy, nonatomic) NSString *symmetricKey;
+
+@property (strong, nonatomic) PPRSA *rsa;
 
 @end
 
@@ -22,22 +23,42 @@
 @implementation ViewController
 
 
-- (NSExtensionItem *)extensionItem {
+- (NSExtensionItem *)extensionItemError:(NSError **)error {
+	NSAssert(_symmetricKey, @"Must first create a symmetric key");
 	NSString *typeIdentifier = @"app.medcalc.v3.user-data";
 	
-	// TODO: generate random key and encrypt using MedCalc public key
-	self.symmetricKey = @"abcd";
-	NSData *encKey = [_symmetricKey dataUsingEncoding:NSUTF8StringEncoding];
-	NSItemProvider *itemProvider = [[NSItemProvider alloc] initWithItem:encKey typeIdentifier:typeIdentifier];
+	// generate a random key and encrypt
+	if (!_rsa) {
+		self.rsa = [PPRSA new];
+		if (![_rsa loadPublicKeyFromBundledCertificate:@"medcalc-public" error:error]) {
+			return nil;
+		}
+	}
 	
+	NSData *encKey = [_rsa encryptData:[_symmetricKey dataUsingEncoding:NSUTF8StringEncoding] error:error];
+	if (!encKey) {
+		return nil;
+	}
+	
+	NSItemProvider *itemProvider = [[NSItemProvider alloc] initWithItem:encKey typeIdentifier:typeIdentifier];
 	NSExtensionItem *item = [[NSExtensionItem alloc] init];
-	item.attachments = @[ itemProvider ];
+	item.attachments = @[itemProvider];
 	
 	return item;
 }
 
 - (IBAction)launchExtension:(id)sender {
-	UIActivityViewController *activityViewController = [self activityViewControllerForItems:@[[self extensionItem]] sender:sender];
+	self.symmetricKey = [PPRSA randomStringOfLength:32];
+	
+	NSError *error = nil;
+	NSExtensionItem *item = [self extensionItemError:&error];
+	if (!item) {
+		[self presentError:error];
+		return;
+	}
+	
+	// create activity view controller
+	UIActivityViewController *activityViewController = [self activityViewControllerForItems:@[item] sender:sender];
 	activityViewController.completionWithItemsHandler = ^(NSString *activityType, BOOL completed, NSArray *returnedItems, NSError *activityError) {
 		if (!completed) {
 			return;

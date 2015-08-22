@@ -20,7 +20,7 @@
                                 <rect key="frame" x="243" y="284" width="114" height="32"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <state key="normal" title="Start Extension">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="launchExtension:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vwl-Di-EBB"/>

@@ -14,6 +14,9 @@
 		EE071BD71B80E5AB007751AF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE071BD61B80E5AB007751AF /* Images.xcassets */; };
 		EE071BDA1B80E5AB007751AF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE071BD81B80E5AB007751AF /* LaunchScreen.xib */; };
 		EE071BE61B80E5AB007751AF /* AppExtensionTesterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EE071BE51B80E5AB007751AF /* AppExtensionTesterTests.m */; };
+		EE3BE4311B88B8B50026BE0E /* PPRSA.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3BE42F1B88B8B50026BE0E /* PPRSA.m */; };
+		EE3BE4351B88C1A50026BE0E /* medcalc-public.crt in Resources */ = {isa = PBXBuildFile; fileRef = EE3BE4341B88C1A50026BE0E /* medcalc-public.crt */; };
+		EE3BE4381B88CA680026BE0E /* NSData+PPAES.m in Sources */ = {isa = PBXBuildFile; fileRef = EE3BE4371B88CA680026BE0E /* NSData+PPAES.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,12 @@
 		EE071BDF1B80E5AB007751AF /* AppExtensionTesterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppExtensionTesterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE071BE41B80E5AB007751AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE071BE51B80E5AB007751AF /* AppExtensionTesterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppExtensionTesterTests.m; sourceTree = "<group>"; };
+		EE3BE42E1B88B8B50026BE0E /* PPRSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRSA.h; sourceTree = "<group>"; };
+		EE3BE42F1B88B8B50026BE0E /* PPRSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPRSA.m; sourceTree = "<group>"; };
+		EE3BE4301B88B8B50026BE0E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EE3BE4341B88C1A50026BE0E /* medcalc-public.crt */ = {isa = PBXFileReference; lastKnownFileType = file; path = "medcalc-public.crt"; sourceTree = "<group>"; };
+		EE3BE4361B88CA680026BE0E /* NSData+PPAES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+PPAES.h"; sourceTree = "<group>"; };
+		EE3BE4371B88CA680026BE0E /* NSData+PPAES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+PPAES.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +94,7 @@
 				EE071BCE1B80E5AB007751AF /* AppDelegate.m */,
 				EE071BD01B80E5AB007751AF /* ViewController.h */,
 				EE071BD11B80E5AB007751AF /* ViewController.m */,
+				EE3BE42D1B88B8B50026BE0E /* PPRSA */,
 				EE071BD31B80E5AB007751AF /* Main.storyboard */,
 				EE071BD61B80E5AB007751AF /* Images.xcassets */,
 				EE071BD81B80E5AB007751AF /* LaunchScreen.xib */,
@@ -96,6 +106,7 @@
 		EE071BC91B80E5AB007751AF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EE3BE4341B88C1A50026BE0E /* medcalc-public.crt */,
 				EE071BCA1B80E5AB007751AF /* Info.plist */,
 				EE071BCB1B80E5AB007751AF /* main.m */,
 			);
@@ -118,6 +129,18 @@
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
+		};
+		EE3BE42D1B88B8B50026BE0E /* PPRSA */ = {
+			isa = PBXGroup;
+			children = (
+				EE3BE4301B88B8B50026BE0E /* README.md */,
+				EE3BE42E1B88B8B50026BE0E /* PPRSA.h */,
+				EE3BE42F1B88B8B50026BE0E /* PPRSA.m */,
+				EE3BE4361B88CA680026BE0E /* NSData+PPAES.h */,
+				EE3BE4371B88CA680026BE0E /* NSData+PPAES.m */,
+			);
+			path = PPRSA;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -201,6 +224,7 @@
 			files = (
 				EE071BD51B80E5AB007751AF /* Main.storyboard in Resources */,
 				EE071BDA1B80E5AB007751AF /* LaunchScreen.xib in Resources */,
+				EE3BE4351B88C1A50026BE0E /* medcalc-public.crt in Resources */,
 				EE071BD71B80E5AB007751AF /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,6 +243,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE3BE4381B88CA680026BE0E /* NSData+PPAES.m in Sources */,
+				EE3BE4311B88B8B50026BE0E /* PPRSA.m in Sources */,
 				EE071BD21B80E5AB007751AF /* ViewController.m in Sources */,
 				EE071BCF1B80E5AB007751AF /* AppDelegate.m in Sources */,
 				EE071BCC1B80E5AB007751AF /* main.m in Sources */,
@@ -418,6 +444,7 @@
 				EE071BEB1B80E5AB007751AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EE071BEC1B80E5AB007751AF /* Build configuration list for PBXNativeTarget "AppExtensionTesterTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +453,7 @@
 				EE071BEE1B80E5AB007751AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
