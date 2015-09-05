@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "PPRSA.h"
+#import "NSData+PPAES.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
 
@@ -108,7 +109,7 @@
 						[errors addObject:error];
 					}
 					else if (data) {
-						NSError *hError = [self handleData:data ofType:dataType];
+						NSError *hError = [self handleIncomingData:data ofType:dataType];
 						if (hError) {
 							[errors addObject:hError];
 						}
@@ -128,14 +129,15 @@
 	});
 }
 
-- (NSError *)handleData:(NSData *)prefData ofType:(NSString *)dataType {
-	NSParameterAssert(prefData);
+- (NSError *)handleIncomingData:(NSData *)encData ofType:(NSString *)dataType {
+	NSParameterAssert(encData);
 	NSParameterAssert(dataType);
-	// TODO: decrypt using symmetric key
-	NSError *error = nil;
+	NSAssert(_symmetricKey, @"Must have symmetric key by now");
+	NSData *data = [encData AES256DecryptWithKey:_symmetricKey];
 	
+	NSError *error = nil;
 	if ([@"app.medcalc.v3.user-data.preferences" isEqualToString:dataType]) {
-		NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:prefData options:0 error:&error];
+		NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
 		if (!dict) {
 			return error;
 		}
