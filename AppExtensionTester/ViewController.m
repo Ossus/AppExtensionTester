@@ -144,10 +144,16 @@
 		NSLog(@"--->  Prefs: %@", dict);
 	}
 	else if ([@"app.medcalc.v3.user-data.favorites" isEqualToString:dataType]) {
-		
+		NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		NSLog(@"--->  Favs: %@", str);
 	}
 	else if ([@"app.medcalc.v3.user-data.dilutions" isEqualToString:dataType]) {
-		
+		NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		NSLog(@"--->  Dilus: %@", str);
+	}
+	else if ([@"app.medcalc.v3.user-data.purchases" isEqualToString:dataType]) {
+		NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		NSLog(@"--->  Purch: %@", str);
 	}
 	
 	return nil;
